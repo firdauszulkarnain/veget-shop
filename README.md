@@ -57,10 +57,10 @@ php artisan storage:link
 php artisan serve
 ```
 
-## DOKUMENTASI
-<img width="960" alt="veget1" src="https://github.com/firdauszulkarnain/veget-shop/assets/67721580/24b3949e-c1be-4dcd-b7e1-7eddd4796849">
-<img width="960" alt="veget 4" src="https://github.com/firdauszulkarnain/veget-shop/assets/67721580/ea1281b2-c569-4bcc-aa74-92fbe4e54a33">
-<img src="https://github.com/firdauszulkarnain/veget-shop/assets/67721580/d6478e21-b0ce-4307-953f-7f10262a8563">
+## DOKUMENTASI<img width="960" alt="Screenshot 2023-06-03 233646" src="https://github.com/firdauszulkarnain/veget-shop/assets/67721580/bedb23b0-fc61-458a-a069-a868dafd4cad">
+<img width="960" alt="Screenshot 2023-06-03 233731" src="https://github.com/firdauszulkarnain/veget-shop/assets/67721580/3353acce-c5c9-4fc3-8407-2df87bd14685">
+<img src="https://github.com/firdauszulkarnain/veget-shop/assets/67721580/fe232aeb-99e0-4152-b2fd-78b095021984">
+
 
 
 
