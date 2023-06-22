@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="featured__item__text">
                                             <h6 class="text-capitalize"><a href="/shop/detail-produk/{{ $item->id }}">{{ $item->nama_produk }}</a></h6>
-                                            <h5>Rp.{{ number_format($item->harga_produk2, 0, ',', '.') }} - Rp.{{ number_format($item->harga_produk1, 0, ',', '.') }}</h5>
+                                            <h5>Rp.{{ number_format($item->harga_produk, 0, ',', '.') }}</h5>
                                                 @if ($item->total > 10)
                                                     <small class="badge st-color"> {{ $item->total }} Pcs Sold</small>
                                                 @elseif($item->total > 0 && $item->total < 10)
@@ -143,14 +143,6 @@
                                 <h3 class="text-capitalize" id="nama_produk">Nama Produk</h3>
                                 <div class="product__details__price" style="font-size: 20px !important;" id="harga_produk"></div>
                                 <p class="text-justify pr-5" id="desc_produk"></p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipe_produk" id="harga1" value="1" checked>
-                                    <label class="form-check-label" for="harga1" id="label_harga1"></label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipe_produk" id="harga2" value="1">
-                                    <label class="form-check-label" for="harga2" id="label_harga2"></label>
-                                </div>
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty" id="pro-qty">
@@ -239,8 +231,6 @@
                      $(".modal-body #nama_produk").html(tmp.nama_produk);
                      $(".modal-body #desc_produk").html(tmp.desc_produk);
                      $(".modal-body #harga_produk").html(tmp.harga_produk);
-                     $(".modal-body #label_harga1").html(tmp.harga_produk1);
-                     $(".modal-body #label_harga2").html(tmp.harga_produk2);
                      $(".modal-body #toko").html(tmp.toko);
                      $(".modal-body #foto_produk").attr("src", tmp.foto_produk);
                      $(".modal-body .see-more").attr("href", urlDetail);

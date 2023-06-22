@@ -77,7 +77,7 @@
                         @foreach ($detail as $row)
                             <tr class="text-center">
                                 <td></td>
-                                <td class="text-capitalize">{{ $row->produk->nama_produk }} - {{ ($row->tipe_produk == 1) ? '1000g' : '500g' }}</td>
+                                <td class="text-capitalize">{{ $row->produk->nama_produk }}</td>
                                 <td>{{ $row->qty }}</td>
                             </tr>
                         @endforeach

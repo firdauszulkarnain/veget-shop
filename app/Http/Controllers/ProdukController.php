@@ -34,14 +34,12 @@ class ProdukController extends Controller
     {
         $validasi = $request->validate([
             'nama_produk' => 'required',
-            'harga_produk1' => 'required|numeric',
-            'harga_produk2' => 'required|numeric',
+            'harga_produk' => 'required|numeric',
             'foto_produk' => 'image|file|max:2048',
             'desc_produk' => 'required|min:10',
         ], [
             'nama_produk.required' => 'Nama Produk Tidak Boleh Kosong!',
-            'harga_produk1.required' => 'Harga Tidak Boleh Kosong!',
-            'harga_produk2.required' => 'Harga Tidak Boleh Kosong!',
+            'harga_produk.required' => 'Harga Tidak Boleh Kosong!',
             'foto_produk.max' => 'File Gambar Hanya 2 MB!',
             'desc_produk.required' => 'Deskripsi Tidak Boleh Kosong!'
         ]);
@@ -57,8 +55,7 @@ class ProdukController extends Controller
         $store = Store::where('user_id', auth()->user()->id)->first();
         Produk::create([
             'nama_produk' => $validasi['nama_produk'],
-            'harga_produk1' => str_replace(".", "", $validasi['harga_produk1']),
-            'harga_produk2' => str_replace(".", "", $validasi['harga_produk2']),
+            'harga_produk' => str_replace(".", "", $validasi['harga_produk']),
             'foto_produk' => $validasi['foto_produk'],
             'stock_produk' => $stock,
             'desc_produk' => $validasi['desc_produk'],
@@ -90,14 +87,12 @@ class ProdukController extends Controller
         $validasi = $request->validate(
             [
                 'nama_produk' => 'required',
-                'harga_produk1' => 'required|numeric',
-                'harga_produk2' => 'required|numeric',
+                'harga_produk' => 'required|numeric',
                 'desc_produk' => 'required|min:10',
             ],
             [
                 'nama_produk.required' => 'Nama Product Tidak Boleh Kosong!',
-                'harga_produk1.required' => 'Harga Tidak Boleh Kosong!',
-                'harga_produk2.required' => 'Harga Tidak Boleh Kosong!',
+                'harga_produk.required' => 'Harga Tidak Boleh Kosong!',
                 'desc_produk.required' => 'Deskripsi Tidak Boleh Kosong!'
             ]
         );
@@ -115,8 +110,7 @@ class ProdukController extends Controller
         }
         $produk = Produk::find($produk->id);
         $produk->nama_produk = $validasi['nama_produk'];
-        $produk->harga_produk1 = str_replace(".", "", $validasi['harga_produk1']);
-        $produk->harga_produk2 = str_replace(".", "", $validasi['harga_produk2']);
+        $produk->harga_produk = str_replace(".", "", $validasi['harga_produk']);
         $produk->stock_produk = $stock;
         $produk->foto_produk = ($request->file('foto_produk')) ? $validasi['foto_produk'] : $produk->foto_produk;
         $produk->save();

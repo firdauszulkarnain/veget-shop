@@ -11,8 +11,8 @@
                     <div class="breadcrumb__text">
                         <h2 class="text-capitalize">{{ $produk->nama_produk }}</h2>
                         <div class="breadcrumb__option">
-                            <a href="{{ route('home') }}">Home</a>
-                            <a href="{{ route('shop') }}">Shop</a>
+                            <a href="{{ route('home') }}">Beranda</a>
+                            <a href="{{ route('shop') }}">Toko</a>
                             <span>Detail Produk</span>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3 class="text-capitalize">{{ $produk->nama_produk }}</h3>
-                        <div class="product__details__price">Rp. {{ number_format($produk->harga_produk2, 0, ',', '.') }} - Rp. {{ number_format($produk->harga_produk1, 0, ',', '.') }}</div>
+                        <div class="product__details__price">Rp. {{ number_format($produk->harga_produk, 0, ',', '.') }}</div>
                         <p class="text-justify pr-5">{{ strip_tags(Str::limit($produk->desc_produk, 200)) }}</p>
                         
                         @if (!auth()->check())
@@ -49,14 +49,6 @@
                         @else
                             <form action="{{ route('tambah_keranjang', $produk->id) }}" method="POST">
                                 @csrf
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="harga1" name="tipe_produk" class="custom-control-input" value="1" checked>
-                                    <label class="custom-control-label" for="harga1">Rp. {{ number_format($produk->harga_produk1, 0, ',', '.') }}/1000g</label>
-                                </div>
-                                <div class="custom-control custom-radio mb-3">
-                                    <input type="radio" id="harga2" name="tipe_produk" class="custom-control-input" value="2">
-                                    <label class="custom-control-label" for="harga2">Rp. {{ number_format($produk->harga_produk2, 0, ',', '.') }}/500g</label>
-                                </div>
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty" id="pro-qty">
@@ -121,7 +113,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6 class="text-capitalize"><a href="/shop/detail-produk/{{ $item->id }}">{{ $item->nama_produk }}</a></h6>
-                            <h5>Rp.{{ number_format($item->harga_produk2, 0, ',', '.') }} - Rp.{{ number_format($item->harga_produk1, 0, ',', '.') }}</h5>
+                            <h5>Rp.{{ number_format($item->harga_produk, 0, ',', '.') }}</h5>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function home()
     {
         $data = [
-            'title' => 'Home',
+            'title' => 'Beranda',
             'produk' => Produk::with(['store'])->where('stock_produk', 1)->limit(8)->get(),
             'totalCart' => $this->totalCart(),
         ];
@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function about()
     {
         $data = [
-            'title' => 'About',
+            'title' => 'Tentang',
             'totalCart' => $this->totalCart(),
         ];
         return view('main.about', $data);
@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function contact()
     {
         $data = [
-            'title' => 'Contact',
+            'title' => 'Hubungi Kami',
             'totalCart' => $this->totalCart(),
         ];
         return view('main.contact', $data);
@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function profile()
     {
         $data = [
-            'title' => 'Profile',
+            'title' => 'Profil Saya',
             'user' => User::where('id', auth()->user()->id)->first(),
             'totalCart' => $this->totalCart()
         ];

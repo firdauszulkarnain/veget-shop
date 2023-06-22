@@ -25,7 +25,7 @@
                     <div class="pt-5 pb-3 px-4">
                         <div class=" card-body p-0">
                             <div class="text-center">
-                                <h2 style="font-size: 40px; color: #0B3005"><i class="fa-solid fa-user"></i> SIGN IN</h2>
+                                <h2 style="font-size: 40px; color: #0B3005"><i class="fa-solid fa-user"></i> LOGIN</h2>
                                 <hr class="garis mb-4">
                             </div>
                             <form method="POST" action="{{ url('/proses_login') }}" class="mt-0">

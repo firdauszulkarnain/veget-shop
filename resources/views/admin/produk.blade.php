@@ -14,8 +14,7 @@
                         <tr class="text-center">
                             <th scope="col">No.</th>
                             <th scope="col">Sayuran</th>
-                            <th scope="col">Harga 100g</th>
-                            <th scope="col">Harga 500g</th>
+                            <th scope="col">Harga</th>
                             <th scope="col">Stock</th>
                             <th scope="col">Toko</th>
                         </tr>
@@ -25,8 +24,7 @@
                             <tr class="text-center">
                                 <td></td>
                                 <td class="text-capitalize">{{ $row->nama_produk }}</td>
-                                <td>Rp. {{ number_format($row->harga_produk1, 0, ',', '.') }}</td>
-                                <td>Rp. {{ number_format($row->harga_produk2, 0, ',', '.') }}</td>
+                                <td>Rp. {{ number_format($row->harga_produk, 0, ',', '.') }}</td>
                                 <td>
                                     @if ($row->stock_produk == 1)
                                         <span class="badge badge-primary">Available</span>

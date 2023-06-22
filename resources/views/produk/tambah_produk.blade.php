@@ -45,28 +45,18 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="harga_produk2" class="text-dark">Harga 500 gram</label>
+                        <label for="harga_produk" class="text-dark">Harga Sayur</label>
                         <div class="input-group">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-primary text-light font-weight-bolder px-3" id="basic-addon2">Rp</span>
                             </div>
-                            <input type="text" class="form-control uang @error('harga_produk2') is-invalid @enderror" id="harga_produk2" name="harga_produk2" autocomplete="off" >
+                            <input type="text" class="form-control uang @error('harga_produk') is-invalid @enderror" id="harga_produk" name="harga_produk" autocomplete="off" >
                         </div>
-                        @error('harga_produk2')
+                        @error('harga_produk')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="harga_produk1" class="text-dark">Harga 1000 gram</label>
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <span class="input-group-text bg-primary text-light font-weight-bolder px-3" id="basic-addon2">Rp</span>
-                            </div>
-                            <input type="text" class="form-control uang @error('harga_produk1') is-invalid @enderror" id="harga_produk1" name="harga_produk1" autocomplete="off" >
-                        </div>
-                        @error('harga_produk1')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
                         <div class="form-group">
                             <label for="foto_produk" class="text-dark mt-3">Foto Sayur</label>
                             <input type="file" class="input-file" id="foto_produk" name="foto_produk" onchange="previewImage()" >

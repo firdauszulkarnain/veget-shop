@@ -17,8 +17,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'bawang bombay',
-            'harga_produk1' => 50000,
-            'harga_produk2' => 25000,
+            'harga_produk' => 50000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar1.png',
             'desc_produk' => 'bawang bombay',
@@ -27,8 +26,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'bawang putih',
-            'harga_produk1' => 40000,
-            'harga_produk2' => 20000,
+            'harga_produk' => 40000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar2.png',
             'desc_produk' => 'bawang putih',
@@ -36,8 +34,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'bayam hijau',
-            'harga_produk1' => 15000,
-            'harga_produk2' => 7500,
+            'harga_produk' => 15000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar3.png',
             'desc_produk' => 'bayam hijau',
@@ -45,8 +42,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'brokoli',
-            'harga_produk1' => 35000,
-            'harga_produk2' => 17500,
+            'harga_produk' => 35000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar4.png',
             'desc_produk' => 'brokoli',
@@ -54,8 +50,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'cabe merah besar',
-            'harga_produk1' => 75000,
-            'harga_produk2' => 37500,
+            'harga_produk' => 75000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar5.png',
             'desc_produk' => 'cabe merah besar',
@@ -63,8 +58,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'kacang panjang',
-            'harga_produk1' => 17000,
-            'harga_produk2' => 85000,
+            'harga_produk' => 17000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar6.png',
             'desc_produk' => 'kacang panjang',
@@ -72,8 +66,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'Kangkung',
-            'harga_produk1' => 15000,
-            'harga_produk2' => 7500,
+            'harga_produk' => 15000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar7.png',
             'desc_produk' => 'kangkung',
@@ -81,8 +74,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'Kentang',
-            'harga_produk1' => 25000,
-            'harga_produk2' => 12500,
+            'harga_produk' => 25000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar8.png',
             'desc_produk' => 'Kentang',
@@ -90,8 +82,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'sawi hijau',
-            'harga_produk1' => 15000,
-            'harga_produk2' => 7500,
+            'harga_produk' => 15000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar9.png',
             'desc_produk' => 'sawi hijau',
@@ -99,8 +90,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'store_id' => 1,
             'nama_produk' => 'Wortel',
-            'harga_produk1' => 13000,
-            'harga_produk2' => 6500,
+            'harga_produk' => 13000,
             'stock_produk' => 1,
             'foto_produk' => 'gambar-produk/gambar10.png',
             'desc_produk' => 'wortel',

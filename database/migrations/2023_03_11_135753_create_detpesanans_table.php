@@ -17,7 +17,6 @@ class CreateDetpesanansTable extends Migration
             $table->id();
             $table->foreignId('pesanan_id')->constrained('pesanans')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('produk_id')->constrained('produks')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('tipe_produk');
             $table->foreignId('store_id')->constrained('stores')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('qty');
             $table->integer('subtotal');

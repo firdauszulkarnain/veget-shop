@@ -39,18 +39,10 @@
                                             <tr>
                                                 <td class="shoping__cart__item">
                                                     <img src="{{ asset('storage/'. $item->produk->foto_produk) }}" alt="" width="20%">
-                                                    @if ($item->tipe_produk == 1)
-                                                        <h5 class="text-capitalize"><a href="{{ route('detail_produk', $item->produk->id) }}" class="text-decoration-none text-dark">{{ $item->produk->nama_produk }} - 1000g</a></h5>
-                                                    @else
-                                                        <h5 class="text-capitalize"><a href="{{ route('detail_produk', $item->produk->id) }}" class="text-decoration-none text-dark">{{ $item->produk->nama_produk }} - 500g</a></h5>
-                                                    @endif
+                                                    <h5 class="text-capitalize"><a href="{{ route('detail_produk', $item->produk->id) }}" class="text-decoration-none text-dark">{{ $item->produk->nama_produk }}</a></h5>
                                                 </td>
                                                 <td class="shoping__cart__price">
-                                                    @if ($item->tipe_produk == 1)
-                                                        Rp. {{ number_format($item->produk->harga_produk1, 0, ',', '.') }}
-                                                    @else
-                                                        Rp. {{ number_format($item->produk->harga_produk2, 0, ',', '.') }}
-                                                    @endif
+                                                    Rp. {{ number_format($item->produk->harga_produk, 0, ',', '.') }}
                                                 </td>
                                                 <td class="shoping__cart__quantity">
                                                     <div class="quantity">

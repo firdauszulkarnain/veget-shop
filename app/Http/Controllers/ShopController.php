@@ -34,7 +34,7 @@ class ShopController extends Controller
 
 
         $data = [
-            'title' => 'Shop',
+            'title' => 'Toko',
             'produk' => $produk,
             'sort' => $sort,
             'keyword' => $keyword,
@@ -64,7 +64,6 @@ class ShopController extends Controller
     {
         $user_id = auth()->user()->id;
         $qty = $request->qty;
-        $tipe = ($request->tipe_produk) ? $request->tipe_produk : 2;
         $pesanan =  Pesanan::where('user_id', $user_id)->where(['status' => 0])->first();
         $produk = Produk::with(['store'])->find($produk->id);
 
@@ -82,30 +81,18 @@ class ShopController extends Controller
             }
         }
 
-        $detailPesanan = Detpesanan::where('pesanan_id', $pesanan->id)->where(['produk_id' => $produk->id, 'tipe_produk' => $tipe])->first();
+        $detailPesanan = Detpesanan::where('pesanan_id', $pesanan->id)->where(['produk_id' => $produk->id])->first();
         if ($detailPesanan != NULL) {
             $detailPesanan->qty = $detailPesanan->qty + $qty;
-            if ($tipe == 1) {
-                $subtotal = $produk->harga_produk1 * $detailPesanan->qty;
-            } else {
-                $subtotal = $produk->harga_produk2 * $detailPesanan->qty;
-            }
-            $detailPesanan->subtotal = $subtotal;
+            $detailPesanan->subtotal = $produk->harga_produk * $detailPesanan->qty;
             $detailPesanan->save();
         } else {
-            if ($tipe == 1) {
-                $subtotal = $produk->harga_produk1 * $qty;
-            } else {
-                $subtotal = $produk->harga_produk2 * $qty;
-            }
-
             Detpesanan::create([
                 'pesanan_id' => $pesanan->id,
                 'produk_id' => $produk->id,
                 'store_id' => $produk->store->id,
                 'qty' => $qty,
-                'subtotal' => $subtotal,
-                'tipe_produk' => $tipe
+                'subtotal' =>  $produk->harga_produk * $qty,
             ]);
         }
 
@@ -187,11 +174,7 @@ class ShopController extends Controller
         $qty = $request->qty;
         $produk = Produk::where('id', $detpesanan->produk_id)->first();
         $detpesanan->qty = $qty;
-        if ($detpesanan->tipe_produk == 1) {
-            $detpesanan->subtotal = $qty * $produk->harga_produk1;
-        } else {
-            $detpesanan->subtotal = $qty * $produk->harga_produk2;
-        }
+        $detpesanan->subtotal = $qty * $produk->harga_produk;
 
         $detpesanan->save();
         return redirect()->route('keranjang');
@@ -357,9 +340,7 @@ class ShopController extends Controller
 
         return response()->json([
             'nama_produk' => $produk->nama_produk,
-            'harga_produk' => 'Rp. ' . number_format($produk->harga_produk2, 0, ',', '.') . ' - Rp.' . number_format($produk->harga_produk1, 0, ',', '.'),
-            'harga_produk1' => 'Rp.' . number_format($produk->harga_produk1, 0, ',', '.') . '/1000g',
-            'harga_produk2' => 'Rp.' . number_format($produk->harga_produk2, 0, ',', '.') . '/500g',
+            'harga_produk' => 'Rp. ' . number_format($produk->harga_produk, 0, ',', '.'),
             'foto_produk' => asset('storage/' . $produk->foto_produk),
             'desc_produk' => (strlen($descProduk) > 80) ? $descProduk . ' ' . $link : $descProduk,
             'toko' => $produk->store->nama_toko,

@@ -27,7 +27,7 @@
                                     <tr class="text-center">
                                         <th scope="col">No.</th>
                                         <th scope="col">No. Pesanan</th>
-                                        <th scope="col">Store</th>
+                                        <th scope="col">Toko</th>
                                         <th scope="col">Subtotal</th>
                                         <th scope="col">Tgl. Pesanan</th>
                                         <th scope="col">Status</th>

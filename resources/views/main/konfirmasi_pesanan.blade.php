@@ -80,7 +80,7 @@
                                 <div class="checkout__order__products">Items <span>Total</span></div>
                                 <ul>
                                     @foreach ($items as $item)
-                                            <li><b class="text-capitalize font-weight-normal">{{ $item->produk->nama_produk }} - {{ ($item->tipe_produk == 1) ? '1000g' : '500g' }}</b> (x{{ $item->qty }})  <span>Rp. {{ number_format($item->subtotal, 0, ',', '.') }}</span></li>
+                                            <li><b class="text-capitalize font-weight-normal">{{ $item->produk->nama_produk }}</b> (x{{ $item->qty }})  <span>Rp. {{ number_format($item->subtotal, 0, ',', '.') }}</span></li>
                                     @endforeach
                                 </ul>
                                 <div class="checkout__order__subtotal">Subtotal <span>Rp. {{ number_format($subtotal, 0, ',', '.') }}</span></div>

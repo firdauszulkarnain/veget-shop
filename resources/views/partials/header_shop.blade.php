@@ -35,10 +35,10 @@
                         <li class="{{ Request::is('pesanan-saya') ? 'active' : '' }}"><a href="{{ route('pesanan_saya') }}">Pesanan Saya</a></li>
                     @endif
                 @endif
-                <li class="{{ Request::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
-                <li class="{{ Request::is('shop') ? 'active' : '' }}"><a href="{{ route('shop') }}">Shop</a></li>
-                <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">About</a></li>
-                <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
+                <li class="{{ Request::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Beranda</a></li>
+                <li class="{{ Request::is('shop') ? 'active' : '' }}"><a href="{{ route('shop') }}">Toko</a></li>
+                <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">Tentang</a></li>
+                <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Hubungi Kami</a></li>
                 @if (auth()->check())
                 <li ><a href="{{ route('logout') }}">Logout</a></li>
                 @endif
@@ -65,10 +65,10 @@
                     <div class="col-lg-6 col-md-6 mt-2 te">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="{{ route('home') }}">Home</a>
-                                <a href="{{ route('shop') }}">Shop</a>
+                                <a href="{{ route('home') }}">Beranda</a>
+                                <a href="{{ route('shop') }}">Toko</a>
                                 <a href="{{ route('contact') }}">Hubung Kami</a>
-                                <a href="{{ route('about') }}">FaQ</a>
+                                <a href="{{ route('about') }}">Tentang</a>
                                 <a href="/shop/keranjang" ><i class="fa fa-shopping-bag"></i> <span>{{ $totalCart }}</span></a>
                             </div>
                             <div class="header__top__right__auth ">
