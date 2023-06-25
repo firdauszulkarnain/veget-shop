@@ -86,6 +86,16 @@
                                         <div class=" invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-light st-color">
+                                                <span class="fas fa-fw fa-lock"></span>
+                                            </span>
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="Konfirmasi Password" id="password-confirm" name="password_confirmation" autocomplete="off">
+                                    </div>
+                                </div>
                                 <button class="btn st-color btn-block mb-3" type="submit">REGISTRASI</button>
                             </form>
                             <div class="text-center">

@@ -22,9 +22,8 @@ use App\Http\Controllers\PesananController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('admin.dashboard2');
-// });
+
+Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['cache']], function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -33,10 +32,10 @@ Route::group(['middleware' => ['cache']], function () {
     Route::get('/shop/detail-produk/{produk:id}', [ShopController::class, 'detail_produk'])->name('detail_produk');
     Route::get('/shop/modal/{produk:id}', [ShopController::class, 'produk_modal']);
 
-    Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::post('/proses_login', [AuthController::class, 'authenticate'])->name('authenticate');
-    Route::match(['get', 'post'], '/registrasi', [AuthController::class, 'registrasi'])->name('register');
+    // Route::get('/login', [AuthController::class, 'index'])->name('login');
+    // Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    // Route::post('/proses_login', [AuthController::class, 'authenticate'])->name('authenticate');
+    // Route::match(['get', 'post'], '/registrasi', [AuthController::class, 'registrasi'])->name('register');
 });
 
 Route::group(['middleware' => ['auth', 'customer']], function () {
@@ -96,3 +95,6 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin', 'cache']],
     Route::put('/pesanan/konfirmasi/{pesanan:no_pesanan}', [PesananController::class, 'konfirmasi_bayar'])->name('konfirmasi_pembayaran');
     Route::post('/laporan/pdf', [InvoiceController::class, 'pdf'])->name('admin.laporan.pdf');
 });
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
