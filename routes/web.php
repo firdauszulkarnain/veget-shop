@@ -25,35 +25,33 @@ use App\Http\Controllers\PesananController;
 
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['cache']], function () {
-    Route::get('/', [HomeController::class, 'home'])->name('home');
+    Route::get('/', [HomeController::class, 'home']);
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::match(['get', 'post'], '/shop', [ShopController::class, 'index'])->name('shop');
     Route::get('/shop/detail-produk/{produk:id}', [ShopController::class, 'detail_produk'])->name('detail_produk');
     Route::get('/shop/modal/{produk:id}', [ShopController::class, 'produk_modal']);
-
-    // Route::get('/login', [AuthController::class, 'index'])->name('login');
-    // Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    // Route::post('/proses_login', [AuthController::class, 'authenticate'])->name('authenticate');
-    // Route::match(['get', 'post'], '/registrasi', [AuthController::class, 'registrasi'])->name('register');
 });
 
 Route::group(['middleware' => ['auth', 'customer']], function () {
-    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-    Route::get('/shop/keranjang', [ShopController::class, 'keranjang'])->name('keranjang');
-    Route::get('/shop/konfirmasi-pesanan/', [ShopController::class, 'konfirmasi_pesanan']);
-    Route::post('/shop/proses_pesanan/', [ShopController::class, 'proses_pesanan']);
-    Route::post('/shop/cek_produk', [ShopController::class, 'cek_produk']);
-    Route::post('/kec_checkout', [ShopController::class, 'kec_checkout']);
-    Route::post('/shop/detail_ongkir', [ShopController::class, 'detail_ongkir']);
-    Route::get('/pesanan-saya', [ShopController::class, 'pesanan_saya'])->name('pesanan_saya');
-    Route::post('/keranjang/{detpesanan:id}', [ShopController::class, 'update_qty'])->name('update_qty');
-    Route::delete('/keranjang/{detpesanan:id}', [ShopController::class, 'delete_qty'])->name('delete_qty');
-    Route::match(['get', 'post'], '/update-password', [HomeController::class, 'update_password'])->name('update_password');
-    Route::post('/pesanan/{pesanan:no_pesanan}', [ShopController::class, 'pesanan_selesai'])->name('pesanan_selesai');
-    Route::match(['get', 'post'], '/register-seller', [HomeController::class, 'register_seller'])->name('register_seller');
-    Route::post('/shop/tambah_keranjang/{produk:id}', [ShopController::class, 'tambah_keranjang'])->name('tambah_keranjang');
-    Route::match(['get', 'post'], '/pembayaran/{pesanan:no_pesanan}', [ShopController::class, 'pembayaran'])->name('pembayaran');
+    Route::group(['middleware' => ['verified']], function () {
+        Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+        Route::get('/shop/keranjang', [ShopController::class, 'keranjang'])->name('keranjang');
+        Route::get('/shop/konfirmasi-pesanan/', [ShopController::class, 'konfirmasi_pesanan']);
+        Route::post('/shop/proses_pesanan/', [ShopController::class, 'proses_pesanan']);
+        Route::post('/shop/cek_produk', [ShopController::class, 'cek_produk']);
+        Route::post('/kec_checkout', [ShopController::class, 'kec_checkout']);
+        Route::post('/shop/detail_ongkir', [ShopController::class, 'detail_ongkir']);
+        Route::get('/pesanan-saya', [ShopController::class, 'pesanan_saya'])->name('pesanan_saya');
+        Route::post('/keranjang/{detpesanan:id}', [ShopController::class, 'update_qty'])->name('update_qty');
+        Route::delete('/keranjang/{detpesanan:id}', [ShopController::class, 'delete_qty'])->name('delete_qty');
+        Route::match(['get', 'post'], '/update-password', [HomeController::class, 'update_password'])->name('update_password');
+        Route::post('/pesanan/{pesanan:no_pesanan}', [ShopController::class, 'pesanan_selesai'])->name('pesanan_selesai');
+        Route::match(['get', 'post'], '/register-seller', [HomeController::class, 'register_seller'])->name('register_seller');
+        Route::post('/shop/tambah_keranjang/{produk:id}', [ShopController::class, 'tambah_keranjang'])->name('tambah_keranjang');
+        Route::match(['get', 'post'], '/pembayaran/{pesanan:no_pesanan}', [ShopController::class, 'pembayaran'])->name('pembayaran');
+    });
 });
 
 Route::group(['middleware' => ['auth', 'seller', 'cache']], function () {

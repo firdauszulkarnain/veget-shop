@@ -17,7 +17,7 @@
 
 </head>
 
-<body style="background-color: #1D4E56">
+<body style="background-color: #0B3005">
     <div class="container">
         <div class="row d-flex justify-content-center mt-5">
             <div class="col-md-6">
@@ -31,13 +31,13 @@
                             </div>
                         @endif
     
-                        <img src="/shop-template/img/logo2.png" width="80%" class="tengah shadow-sm p-3 mb-2 bg-white rounded" alt="">
+                        <img src="/dist/img/logo6.png" width="80%" class="tengah shadow-sm p-3 mb-2 bg-white rounded" alt="">
                         {{ __('Before proceeding, please check your email for a verification link.') }}
                         {{ __('If you did not receive the email') }},
                         {{ __('click button below to request another') }}
                         <form class="d-flex justify-content-center mt-3" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-md sd-color align-baseline px-3 py-2  shadow-sm rounded">Resend Email Verification</button>
+                            <button type="submit" class="btn btn-style align-baseline px-3 py-2  shadow-sm rounded">Resend Email Verification</button>
                         </form>
                     </div>
                 </div>

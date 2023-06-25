@@ -28,7 +28,7 @@
                                 <h2 style="font-size: 40px; color: #0B3005"><i class="fa-solid fa-user"></i> LOGIN</h2>
                                 <hr class="garis mb-4">
                             </div>
-                            <form method="POST" action="{{ url('/proses_login') }}" class="mt-0">
+                            <form method="POST" action="{{ route('login') }}" class="mt-0">
                                 @csrf
                                 <div class="mb-3">
                                     <div class="input-group @error('username') is-invalid @enderror">
