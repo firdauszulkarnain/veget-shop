@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth', 'seller', 'cache']], function () {
     Route::get('/pesanan_invoice/{pesanan:id}', [PesananController::class, 'pesanan_invoice']);
     Route::match(['get', 'post'], '/seller/profile', [SellerController::class, 'profile'])->name('seller.profile');
     Route::get('/invoice/pdf/{pesanan:id}', [PesananController::class, 'pdf'])->name('invoice.pdf');
+    Route::post('/laporan/pdf', [InvoiceController::class, 'pdf'])->name('seller.laporan.pdf');
 });
 
 
@@ -93,4 +94,5 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin', 'cache']],
     Route::match(['get', 'post'], '/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::match(['get', 'post'], '/user/admin/tambah', [AdminController::class, 'tambah_admin'])->name('tambah_admin');
     Route::put('/pesanan/konfirmasi/{pesanan:no_pesanan}', [PesananController::class, 'konfirmasi_bayar'])->name('konfirmasi_pembayaran');
+    Route::post('/laporan/pdf', [InvoiceController::class, 'pdf'])->name('admin.laporan.pdf');
 });

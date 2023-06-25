@@ -6,6 +6,7 @@ use App\Models\Detpesanan;
 use App\Models\Store;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
@@ -36,5 +37,24 @@ class InvoiceController extends Controller
         ];
 
         return view('invoice.detail_invoice', $data);
+    }
+
+    public function pdf(Request $request)
+    {
+
+        $store = null;
+        if (auth()->user()->role == 1) {
+            $invoice = Invoice::with(['pesanan', 'user', 'store']);
+        } else {
+            $store = Store::where('user_id', auth()->user()->id)->first();
+            $invoice = Invoice::with(['pesanan', 'user', 'store'])->where('store_id', $store->id);
+        }
+
+        $pdf = Pdf::loadView('invoice.laporan', [
+            'invoice' => $invoice->get(),
+            'store' => $store,
+            'total' => $invoice->sum('total'),
+        ]);
+        return $pdf->setPaper('a4', 'potrait')->download('laporan-penjualan.pdf');
     }
 }

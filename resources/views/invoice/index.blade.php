@@ -3,6 +3,10 @@
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-3">
     <h1 class="h3 mb-0 text-gray-800">Data Invoice</h1>
+    <form action="{{ (auth()->user()->role == 1) ? route('admin.laporan.pdf') : route('seller.laporan.pdf')}}" method="POST">
+        @csrf
+        <button class="btn btn-style float-right" type="submit">Download PDF</button>
+    </form>
 </div>
 
 <div class="row mb-5">
