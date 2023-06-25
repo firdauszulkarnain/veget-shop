@@ -60,3 +60,20 @@ a.text-style:focus {
 .border-top-primary {
     border-top: 0.25rem solid #0b3005 !important;
 }
+
+#main {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: arial, sans-serif;
+    font-size: 13px;
+    color: black !important;
+}
+#main td {
+    text-align: left;
+    padding: 5px 8px 5px 8px;
+    border: 1px solid black;
+}
+#main {
+    border-collapse: collapse;
+}

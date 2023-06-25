@@ -71,7 +71,9 @@ Route::group(['middleware' => ['auth', 'seller', 'cache']], function () {
     Route::get('/invoice/{invoice:no_invoice}', [InvoiceController::class, 'detail'])->name('seller.detinv');
     Route::put('/pesanan/konfirmasi_seller/{pesanan:id}', [PesananController::class, 'proses_konfirmasi']);
     Route::put('/pesanan/kirim/{pesanan:no_pesanan}', [PesananController::class, 'kirim_pesanan'])->name('kirim_pesanan');
+    Route::get('/pesanan_invoice/{pesanan:id}', [PesananController::class, 'pesanan_invoice']);
     Route::match(['get', 'post'], '/seller/profile', [SellerController::class, 'profile'])->name('seller.profile');
+    Route::get('/invoice/pdf/{pesanan:id}', [PesananController::class, 'pdf'])->name('invoice.pdf');
 });
 
 

@@ -7,6 +7,7 @@ use App\Models\Pengiriman;
 use App\Models\Store;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PesananController extends Controller
 {
@@ -104,5 +105,45 @@ class PesananController extends Controller
         ];
 
         return view('pesanan.detail_pesanan', $data);
+    }
+
+    public function pesanan_invoice(Pesanan $pesanan)
+    {
+
+        $pesanan = Pesanan::with(['user', 'pengiriman'])->where('id', $pesanan->id)->first();
+        $detPesanan =  Detpesanan::with(['produk'])->where('pesanan_id', $pesanan->id)->get();
+        $kecamatan = ucwords(strtolower($pesanan->pengiriman->kecamatan->nama_kec));
+        $kabupaten = ucwords(strtolower($pesanan->pengiriman->kabupaten->nama_kab));
+        $alamat = $pesanan->pengiriman->alamat_penerima . ', Kec. ' . $kecamatan . ', Kab. ' . $kabupaten;
+        $nama = $pesanan->pengiriman->nama_penerima;
+        $notelp = $pesanan->pengiriman->notelp_penerima;
+
+        $detail = '';
+        $no = 1;
+
+        foreach ($detPesanan as $item) {
+            $detail .= '<tr id="sayur"><td>' . $no . '</td><td width="60%">' . $item->produk->nama_produk . '</td><td>' . $item->qty . ' (*100) gram </td></tr>';
+            $no++;
+        }
+
+        return response()->json([
+            'no_pesanan' => $pesanan->no_pesanan,
+            'nama_penerima' => $nama,
+            'notelp_penerima' => $notelp,
+            'alamat_penerima' => $alamat,
+            'total' => 'Rp.' . number_format($pesanan->total, 0, ',', '.'),
+            'detail' => $detail
+        ]);
+    }
+
+    public function pdf(Pesanan $pesanan)
+    {
+        $pesanan = Pesanan::with(['user', 'pengiriman'])->where('id', $pesanan->id)->first();
+        $detail =  Detpesanan::with(['produk'])->where('pesanan_id', $pesanan->id)->get();
+        $pdf = Pdf::loadView('pesanan.invoice', [
+            'pesanan' => $pesanan,
+            'detail' => $detail,
+        ]);
+        return $pdf->setPaper('a5', 'potrait')->download('invoice_' . strtolower($pesanan->no_pesanan) . '.pdf');
     }
 }
