@@ -47,7 +47,7 @@
                                 </div>
 
 
-                                <div class="mb-4">
+                                <div>
                                     <div class="input-group @error('password') is-invalid @enderror">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text st-color">
@@ -62,6 +62,7 @@
                                         <div class=" invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <small class="mb-4 float-right"><a href="{{ route('password.request') }}" class="text-decoration-none text-dark font-weight-bolder">Lupa Password?</a></small>
                                 <button class="btn st-color btn-block font-weight-bolder" type="submit">LOGIN</button>
                                 <hr>
                                 <div class="text-center mt-4">

@@ -11,10 +11,10 @@
 @endif
 
 {{-- Intro Lines --}}
-{{-- @foreach ($introLines as $line)
+@foreach ($introLines as $line)
 {{ $line }}
 
-@endforeach --}}
+@endforeach
 @lang('Click Tombol di bawah untuk verifikasi email akun anda!')
 
 {{-- Action Button --}}
@@ -35,10 +35,9 @@
 @endisset
 
 {{-- Outro Lines --}}
-{{-- @foreach ($outroLines as $line)
+@foreach ($outroLines as $line)
 {{ $line }}
-
-@endforeach --}}
+@endforeach
 
 {{-- Salutation --}}
 @if (! empty($salutation))

@@ -1,65 +1,96 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RESET PASSWORD | MAI SAYUR</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <style>
+        body{
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+</head>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
+<body style="background-color: #0B3005">
+    <div class="container">
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-md-5">
+                <div class="card px-3">
+                    <div class="card-header font-weight-bolder py-4 text-center" style="font-size: 20px;">{{ __('Mai Sayur Reset Password') }}</div>
+    
+                    <div class="card-body">
+                        <img src="/dist/img/logo6.png" width="80%" class="tengah shadow-sm mb-4 bg-white rounded" alt="">
+                        <form method="POST" action="{{ route('password.update') }}">
+                            @csrf
+    
+                            <input type="hidden" name="token" value="{{ $token }}">
+    
+                            <div class="mb-3">
+                                <div class="input-group @error('email') is-invalid @enderror">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-light" style="background-color: #0B3005">
+                                            <span class="fas fa-fw fa-at"></span>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    id="email" name="email" autocomplete="off" placeholder="Email" value="{{ $email ?? old('email') }}">
+                                </div>
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <div class=" invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+    
+                            <div class="mb-3">
+                                <div class="input-group @error('password') is-invalid @enderror">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-light" style="background-color: #0B3005">
+                                            <span class="fas fa-fw fa-lock"></span>
+                                        </span>
+                                    </div>
+                                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="New Password">
+                                </div>
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <div class=" invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+    
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-light" style="background-color: #0B3005">
+                                            <span class="fas fa-fw fa-lock"></span>
+                                        </span>
+                                    </div>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Konfirmasi Password">
+                                </div>
+                            </div> 
+                            <div class="row d-flex justify-content-center">
+                                <button type="submit" class="btn btn-style">
                                     {{ __('Reset Password') }}
-                                </button>
+                                </button>   
+                              
                             </div>
-                        </div>
-                    </form>
+                            <div class="row mt-2 mb-3 d-flex justify-content-center">
+                               <small> Kembali Ke <a href="{{ route('login') }}" class="text-center text-dark"><u>Login!</u></a></small>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+
+
+    <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/js/adminlte.min.js') }}"></script>
+</body>
+</html>

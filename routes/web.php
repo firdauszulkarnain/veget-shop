@@ -36,7 +36,7 @@ Route::group(['middleware' => ['cache']], function () {
 
 Route::group(['middleware' => ['auth', 'customer']], function () {
     Route::group(['middleware' => ['verified']], function () {
-        Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+        Route::match(['get', 'post'], '/profile', [HomeController::class, 'profile'])->name('profile');
         Route::get('/shop/keranjang', [ShopController::class, 'keranjang'])->name('keranjang');
         Route::get('/shop/konfirmasi-pesanan/', [ShopController::class, 'konfirmasi_pesanan']);
         Route::post('/shop/proses_pesanan/', [ShopController::class, 'proses_pesanan']);

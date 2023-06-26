@@ -43,15 +43,24 @@ class HomeController extends Controller
     }
 
 
-    public function profile()
+    public function profile(Request $request)
     {
-        $data = [
-            'title' => 'Profil Saya',
-            'user' => User::where('id', auth()->user()->id)->first(),
-            'totalCart' => $this->totalCart()
-        ];
+        if ($request->isMethod('POST')) {
+            User::where('id', auth()->user()->id)->update([
+                'notelp' => $request->notelp,
+                'alamat' => $request->alamat
+            ]);
 
-        return view('user.profile', $data);
+            return redirect()->route('profile')->with('success', 'Berhasil Update Profile');
+        } else {
+            $data = [
+                'title' => 'Profil Saya',
+                'user' => User::where('id', auth()->user()->id)->first(),
+                'totalCart' => $this->totalCart()
+            ];
+
+            return view('user.profile', $data);
+        }
     }
 
     public function register_seller(Request $request)
@@ -105,7 +114,7 @@ class HomeController extends Controller
             $user->password = $post['password'];
             $user->save();
 
-            return redirect()->back()->with('success', 'Success Update Password');
+            return redirect()->back()->with('success', 'Berhasil Update Password');
         }
 
         $data = [

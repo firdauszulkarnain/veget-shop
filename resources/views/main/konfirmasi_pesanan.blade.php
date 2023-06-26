@@ -44,7 +44,7 @@
                             <div class="form-row mb-3">
                                 <div class="form-group col-md-6">
                                   <label for="notelp_penerima">No. Telp Penerima</label>
-                                  <input type="text" class="form-control @error('notelp_penerima') is-invalid @enderror" id="notelp_penerima" name="notelp_penerima" value="{{ old('notelp_penerima') }}" autocomplete="off">
+                                  <input type="text" class="form-control @error('notelp_penerima') is-invalid @enderror" id="notelp_penerima" name="notelp_penerima" value="{{ old('notelp_penerima', auth()->user()->notelp) }}" autocomplete="off">
                                 </div>
                                 <div class="form-group col-md-6">
                                   <label for="email">Email</label>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="alamat_penerima">Alamat Pengiriman</label>
-                                <textarea class="form-control @error('alamat_penerima') border border-danger @enderror" id="alamat_penerima" rows="2" name="alamat_penerima" autocomplete="off"></textarea>
+                                <textarea class="form-control @error('alamat_penerima') border border-danger @enderror" id="alamat_penerima" rows="2" name="alamat_penerima" autocomplete="off">{{ auth()->user()->alamat }}</textarea>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="catatan">Catatan Pesanan</label>

@@ -23,18 +23,27 @@
                                 <div class="card px-3 py-3" style="background-color: #0B3005">
                                  <div class="card-body">
                                     <img src="/dist/img/logo2.png" alt="" width="70%" class="tengah mb-4">
-                                     <div class="form-group">
-                                        <label for="username" class="text-light">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username" disabled value="{{ $user->username }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="text-light">Email</label>
-                                        <input type="text" class="form-control" id="email" name="email" disabled value="{{ $user->email }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="notelp" class="text-light">No. Telp</label>
-                                        <input type="text" class="form-control" id="notelp" name="notelp" disabled value="{{ $user->notelp }}">
-                                    </div>
+                                    <form action="" method="POST">
+                                    @csrf
+                                        <div class="form-group">
+                                            <label for="username" class="text-light">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" disabled value="{{ $user->username }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="text-light">Email</label>
+                                            <input type="text" class="form-control" id="email" name="email" disabled value="{{ $user->email }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="notelp" class="text-light">No. Telp</label>
+                                            <input type="text" class="form-control" id="notelp" name="notelp" value="{{ $user->notelp }}">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label for="alamat" class="text-light">Alamat</label>
+                                            <textarea class="form-control @error('alamat') border border-danger @enderror" id="alamat" rows="2" name="alamat" autocomplete="off">{{ $user->alamat }}</textarea>
+                                        </div>
+                                        <button class="btn btn-light font-weight-bolder" type="submit">Update Profile</button>
+                                    </form>
+                                    <hr style="background-color: white;">
                                     <a href="{{ route('update_password') }}"  class="btn btn-danger btn-sm px-4 mt-3 mb-3">Ganti Password</a>
                                    @if (auth()->user()->role == 2)
                                         <a href="/seller" class="btn btn-light btn-sm px-4 mt-3 mb-3 float-right">Dashboard Seller</a>

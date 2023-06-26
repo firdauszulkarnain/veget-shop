@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
             'email' => 'seller@gmail.com',
             'notelp' => '04839438439',
             'password' => Hash::make('password'),
+            'email_verified_at' => now(),
             'role' => 2,
         ]);
         DB::table('stores')->insert([
@@ -40,6 +41,7 @@ class UserSeeder extends Seeder
             'email' => 'customer@gmail.com',
             'notelp' => '0438943843',
             'password' => Hash::make('password'),
+            'email_verified_at' => now(),
             'role' => 3,
         ]);
     }
