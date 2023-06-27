@@ -27,17 +27,17 @@
                     <div class="card-body px-4 pb-5">
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
-                                {{ __('A fresh verification link has been sent to your email address.') }}
+                                {{ __('Link baru untuk verifikasi email sudah dikirim ke email anda') }}
                             </div>
                         @endif
     
                         <img src="/dist/img/logo6.png" width="80%" class="tengah shadow-sm p-3 mb-2 bg-white rounded" alt="">
-                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }},
-                        {{ __('click button below to request another') }}
+                        {{ __('Silahkan cek email anda untuk verifikasi akun.') }}
+                        {{ __('Jika anda belum mendapatkan email,') }}
+                        {{ __('click tombol di bawah untuk request email lain') }}
                         <form class="d-flex justify-content-center mt-3" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-style align-baseline px-3 py-2  shadow-sm rounded">Resend Email Verification</button>
+                            <button type="submit" class="btn btn-style align-baseline px-3 py-2  shadow-sm rounded">Kirim Ulang Email</button>
                         </form>
                     </div>
                 </div>

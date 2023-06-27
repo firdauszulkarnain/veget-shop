@@ -61,7 +61,7 @@
                 <td>COD (<i>Cash On Delivery</i>)</td>
             @endif
             @if (auth()->user()->role == 1)
-                <td>{{ $item->pesanan->toko->nama_toko }}</td>
+                <td>{{ $item->pesanan->store->nama_toko }}</td>
             @endif
             <td>Rp. {{ number_format($item->total, 0, ',', '.') }}</td>
             

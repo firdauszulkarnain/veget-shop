@@ -38,11 +38,16 @@
                                         @if (!auth()->check())
                                             <li><a href="{{ route('login') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                         @else  
+                                            @if (auth()->user()->email_verified_at == null)
+                                                <li><a href="{{ route('verification.notice') }}"><i class="fa fa-shopping-cart"></i></a></li>
+                                            @else
                                             <li>
                                                 <a href="javascript:;" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalKeranjang" class="modal_keranjang">
                                                     <i class="fa fa-shopping-cart"></i>
                                                 </a>
                                             </li>
+                                            @endif
+                                           
                                         @endif
                                     </ul>
                                 </div>

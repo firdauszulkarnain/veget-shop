@@ -6,7 +6,7 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-# @lang('Verifikasi Email')
+{{-- # @lang('Verifikasi Email') --}}
 @endif
 @endif
 
@@ -15,7 +15,6 @@
 {{ $line }}
 
 @endforeach
-@lang('Click Tombol di bawah untuk verifikasi email akun anda!')
 
 {{-- Action Button --}}
 @isset($actionText)

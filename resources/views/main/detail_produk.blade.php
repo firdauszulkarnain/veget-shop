@@ -47,17 +47,28 @@
                             </div>
                             <a href="/login" class="primary-btn">ADD TO CARD</a>
                         @else
-                            <form action="{{ route('tambah_keranjang', $produk->id) }}" method="POST">
-                                @csrf
+                            @if (auth()->user()->email_verified_at == null)
                                 <div class="product__details__quantity">
                                     <div class="quantity">
-                                        <div class="pro-qty" id="pro-qty">
+                                        <div class="pro-qty">
                                             <input type="text" value="1" name="qty" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" id="keranjang" class="primary-btn border-0"><i class="fa fa-shopping-cart"></i></button>
-                            </form>     
+                                <a href="{{ route('verification.notice') }}" class="primary-btn">ADD TO CARD</a>
+                            @else
+                                <form action="{{ route('tambah_keranjang', $produk->id) }}" method="POST">
+                                    @csrf
+                                    <div class="product__details__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty" id="pro-qty">
+                                                <input type="text" value="1" name="qty" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="keranjang" class="primary-btn border-0"><i class="fa fa-shopping-cart"></i></button>
+                                </form>
+                            @endif     
                         @endif
                         <ul>
                             <li><b>Stock</b> <span>Tersedia</span></li>

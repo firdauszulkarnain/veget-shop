@@ -40,7 +40,6 @@ Route::group(['middleware' => ['auth', 'customer']], function () {
         Route::get('/shop/keranjang', [ShopController::class, 'keranjang'])->name('keranjang');
         Route::get('/shop/konfirmasi-pesanan/', [ShopController::class, 'konfirmasi_pesanan']);
         Route::post('/shop/proses_pesanan/', [ShopController::class, 'proses_pesanan']);
-        Route::post('/shop/cek_produk', [ShopController::class, 'cek_produk']);
         Route::post('/kec_checkout', [ShopController::class, 'kec_checkout']);
         Route::post('/shop/detail_ongkir', [ShopController::class, 'detail_ongkir']);
         Route::get('/pesanan-saya', [ShopController::class, 'pesanan_saya'])->name('pesanan_saya');
@@ -52,6 +51,7 @@ Route::group(['middleware' => ['auth', 'customer']], function () {
         Route::post('/shop/tambah_keranjang/{produk:id}', [ShopController::class, 'tambah_keranjang'])->name('tambah_keranjang');
         Route::match(['get', 'post'], '/pembayaran/{pesanan:no_pesanan}', [ShopController::class, 'pembayaran'])->name('pembayaran');
     });
+    Route::post('/shop/cek_produk', [ShopController::class, 'cek_produk']);
 });
 
 Route::group(['middleware' => ['auth', 'seller', 'cache']], function () {
