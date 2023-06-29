@@ -25,11 +25,11 @@
                     <div class="card-header font-weight-bolder text-center">{{ __('Request Reset Password Mai Sayur') }}</div>
     
                     <div class="card-body px-4 pb-3">
-                        @if (session('status'))
+                        {{-- @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                Kami Sudah Kirim Link Reset Password ke Email Anda!
                             </div>
-                        @endif
+                        @endif --}}
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
@@ -65,5 +65,15 @@
     <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+    @if (session('status'))
+    <script>
+        Swal.fire({
+            text:  'Link Verifikasi sudah dikirimkan ke email anda!',
+            icon: 'success'
+        });
+    </script>
+    @endif
 </body>
 </html>

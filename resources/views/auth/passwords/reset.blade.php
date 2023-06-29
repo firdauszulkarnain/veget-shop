@@ -54,7 +54,7 @@
                                             <span class="fas fa-fw fa-lock"></span>
                                         </span>
                                     </div>
-                                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="New Password">
+                                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password Baru">
                                 </div>
                                 @error('password')
                                     <div class=" invalid-feedback">{{ $message }}</div>

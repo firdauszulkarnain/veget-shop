@@ -22,14 +22,14 @@
         <div class="row d-flex justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="card mt-5">
-                    <div class="card-header font-weight-bolder ">{{ __('Verify Your Email Address') }}</div>
+                    <div class="card-header font-weight-bolder ">{{ __('VERIFIKASI EMAIL AKUN MAISAYUR') }}</div>
     
                     <div class="card-body px-4 pb-5">
-                        @if (session('resent'))
+                        {{-- @if (session('resent'))
                             <div class="alert alert-success" role="alert">
                                 {{ __('Link baru untuk verifikasi email sudah dikirim ke email anda') }}
                             </div>
-                        @endif
+                        @endif --}}
     
                         <img src="/dist/img/logo6.png" width="80%" class="tengah shadow-sm p-3 mb-2 bg-white rounded" alt="">
                         {{ __('Silahkan cek email anda untuk verifikasi akun.') }}
@@ -50,5 +50,14 @@
     <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/dist/js/adminlte.js') }}"></script>
+    <script src="{{ asset('/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    @if (session('resent'))
+        <script>
+            Swal.fire({
+                text:  'Link Verifikasi akun sudah dikirimkan ulang ke email anda!',
+                icon: 'success'
+            });
+        </script>
+    @endif
 </body>
 </html>

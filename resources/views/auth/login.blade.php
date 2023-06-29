@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Aplikasi</title>
+    <title>Login Mai Sayur</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -102,7 +102,7 @@
         <script>
             var message = '{{ Session::get('success') }}';
             Swal.fire({
-                title: 'Success!',
+                title: 'Berhasil',
                 text:  message,
                 icon: 'success'
             });

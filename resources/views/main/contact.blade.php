@@ -43,7 +43,7 @@
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>contact@vegetshop.com</p>
+                        <p>maisayur3001@gmail.com</p>
                     </div>
                 </div>
             </div>
