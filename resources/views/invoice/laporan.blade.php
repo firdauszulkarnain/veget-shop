@@ -44,9 +44,9 @@
                 <th width="5%">No.</th>
                 <th width="20%">No. Invoice</th>
                 <th width="15%">Tgl. Invoice</th>
-                <th width="20%">Metode Pembayaran</th>
+                <th width="25%">Metode Pembayaran</th>
                 @if (auth()->user()->role == 1)
-                    <th width="20%">Store</th>
+                    <th width="15%">Toko</th>
                 @endif
                 <th width="20%">Total</th>
 		</tr>
@@ -74,7 +74,7 @@
         @else
         <td colspan="4" style="text-align: center;"><b>Total</b></td>
         @endif
-        <td>Rp. {{ number_format($total, 0, ',', '.') }}</td>
+        <td><b>Rp. {{ number_format($total, 0, ',', '.') }}</b></td>
     </tr>
        
 	</table>	

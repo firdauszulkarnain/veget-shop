@@ -68,10 +68,18 @@
           <div class="card">
             <div class="card-body">
                 <table id="main">
-                    <tr>
+                    <tr style="background-color: #acacac">
                         <td colspan="4" class="text-center">
                             <p style="color: #0b3005;"><b>MAI SAYUR</b></p>
                             <h4 id="no_pesanan" style="margin-top: -15px;"></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width='30%'>
+                            <b>Pembayaran</b>
+                        </td>
+                        <td>
+                            <span id="metode" class="font-weight-bolder"></span>
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +111,7 @@
                 <table id="main">
                     <tr id="detail">
                       <td>No</td>
-                      <td>Produk Sayur</td>
+                      <td>Nama Sayuran</td>
                       <td>Qty</td>
                     </tr>
                     <tr>
@@ -140,6 +148,7 @@
            success: function(msg) {
             let tmp = JSON.parse(msg);
             $('#no_pesanan').html(tmp.no_pesanan);
+            $('#metode').html(tmp.metode);
             $('#nama_penerima').html(tmp.nama_penerima);
             $('#notelp_penerima').html(tmp.notelp_penerima);
             $('#alamat_penerima').html(tmp.alamat_penerima);

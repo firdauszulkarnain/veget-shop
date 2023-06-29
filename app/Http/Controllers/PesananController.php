@@ -122,12 +122,18 @@ class PesananController extends Controller
         $no = 1;
 
         foreach ($detPesanan as $item) {
-            $detail .= '<tr id="sayur"><td>' . $no . '</td><td width="60%">' . $item->produk->nama_produk . '</td><td>' . $item->qty . ' (*100) gram </td></tr>';
+            $detail .= '<tr id="sayur"><td>' . $no . '</td><td width="60%" class="text-capitalize">' . $item->produk->nama_produk . '</td><td>' . $item->qty . ' (*100) gram </td></tr>';
             $no++;
         }
 
+        if ($pesanan->tipe_pembayaran == 0) {
+            $tipe = 'Bank Transfer';
+        } else {
+            $tipe = 'COD (<i>Cash On Delivery</i>)';
+        }
         return response()->json([
             'no_pesanan' => $pesanan->no_pesanan,
+            'metode' => $tipe,
             'nama_penerima' => $nama,
             'notelp_penerima' => $notelp,
             'alamat_penerima' => $alamat,

@@ -34,6 +34,19 @@
         </tr>
         <tr>
             <td width='30%'>
+                <b>Pembayaran</b>
+            </td>
+            <td>
+                <span id="nama_penerima" ><b>
+                @if ($pesanan->tipe_pembayaran == 0)
+                    Bank Transfer
+                @else
+                    COD (<i>Cash On Delivery</i>)
+                @endif</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td width='30%'>
                 <b>Nama</b>
             </td>
             <td>
@@ -74,10 +87,10 @@
         </tr>
         @endforeach
         <tr>
-            <td colspan="2" style="align: center;">
-             <b >Total</b>
+            <td colspan="2" style="text-align: center;">
+             <b style="text-align: center;">Total</b>
             </td>
-            <td> <b id="total" >Rp. {{number_format($pesanan->total, 0, ',', '.')}}</b></td>
+            <td style="text-align: center;"> <b id="total"  style="text-align: center;">Rp. {{number_format($pesanan->total, 0, ',', '.')}}</b></td>
          </tr>
     </table>
 </body>

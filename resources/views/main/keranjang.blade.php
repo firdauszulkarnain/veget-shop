@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="shoping__cart__btns">
-                            <a href="{{ route('shop') }}" class="primary-btn cart-btn">Shop</a>
+                            <a href="{{ route('shop') }}" class="primary-btn cart-btn">Toko</a>
                         </div>
                     </div>
                     <div class="col-lg-5">

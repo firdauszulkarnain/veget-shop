@@ -57,7 +57,7 @@
 
     <li class="nav-item  {{ Request::is('invoice*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('seller.invoice') }}">
-            <i class="fas fa-fw fa-receipt"></i>
+            <i class="fas fa-fw fa-file-invoice"></i>
             <span>Laporan</span></a>
     </li>
 
@@ -120,7 +120,7 @@
 
     <li class="nav-item  {{ Request::is('admin/invoice*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.invoice') }}">
-            <i class="fas fa-fw fa-receipt"></i>
+            <i class="fas fa-fw fa-file-invoice"></i>
             <span>Laporan</span></a>
     </li>
 
