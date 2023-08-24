@@ -49,7 +49,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ url('/pesanan') }}">Data Pesanan</a>
-                <a class="collapse-item" href="{{ route('kirim') }}">Kirim Pesanan</a>
+                {{-- <a class="collapse-item" href="{{ route('kirim') }}">Kirim Pesanan</a> --}}
                 <a class="collapse-item" href="{{ route('seller.konfirmasi') }}">Konfirmasi Pesanan</a>
             </div>
         </div>
@@ -104,7 +104,7 @@
         FITUR UTAMA
     </div>
 
-    <li class="nav-item {{ Request::is('admin/pesanan*') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is('admin/pesanan*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesTwo"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-archive"></i>
@@ -116,6 +116,11 @@
                 <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Konfirmasi Pesanan</a>
             </div>
         </div>
+    </li> --}}
+    <li class="nav-item  {{ Request::is('admin/pesanan*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.pesanan') }}">
+            <i class="fas fa-fw fa-archive"></i>
+            <span>Pesanan</span></a>
     </li>
 
     <li class="nav-item  {{ Request::is('admin/invoice*') ? 'active' : '' }}">

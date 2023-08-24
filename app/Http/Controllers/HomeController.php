@@ -131,7 +131,8 @@ class HomeController extends Controller
         if (Auth::check()) {
             $pesanan = Pesanan::where(['user_id' => auth()->user()->id, 'status' => 0])->first();
             if ($pesanan != null) {
-                $total =  Detpesanan::where('pesanan_id', $pesanan->id)->sum('qty');
+                $total =  Detpesanan::where('pesanan_id', $pesanan->id)->groupBy('produk_id')->get();
+                $total = $total->count();
             } else {
                 $total = 0;
             }
