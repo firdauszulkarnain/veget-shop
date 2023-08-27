@@ -29,9 +29,10 @@ Route::group(['middleware' => ['cache']], function () {
     Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-    Route::match(['get', 'post'], '/shop', [ShopController::class, 'index'])->name('shop');
+    Route::match(['get', 'post'], '/shop/{store:id}/sayuran', [ShopController::class, 'index'])->name('detail_shop');
     Route::get('/shop/detail-produk/{produk:id}', [ShopController::class, 'detail_produk'])->name('detail_produk');
     Route::get('/shop/modal/{produk:id}', [ShopController::class, 'produk_modal']);
+    Route::match(['get', 'post'], '/shop', [ShopController::class, 'shop_list'])->name('shop');
 });
 
 Route::group(['middleware' => ['auth', 'customer']], function () {
@@ -73,6 +74,8 @@ Route::group(['middleware' => ['auth', 'seller', 'cache']], function () {
     Route::get('/invoice/pdf/{pesanan:id}', [PesananController::class, 'pdf'])->name('invoice.pdf');
     Route::post('/laporan/pdf', [InvoiceController::class, 'pdf'])->name('seller.laporan.pdf');
 });
+
+
 
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin', 'cache']], function () {

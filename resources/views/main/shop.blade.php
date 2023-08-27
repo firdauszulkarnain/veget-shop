@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>Sayuran Mai Sayur</h2>
+                            <h2 class="text-capitalize">Sayuran {{ $store->nama_toko }}</h2>
                         </div>
                     </div>
                 </div>
@@ -28,10 +28,13 @@
         <section class="product spad mt-n5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-9">
-                        <div class="hero__search">
+                    <div class="col-lg-2 mt-1">
+                        <a href="{{ route('shop') }}" class="site-btn btn-block text-center"><i class="fas fa-fw fa-store"></i> &nbsp;&nbsp;&nbsp;Kembali</a>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="hero__search float-right">
                             <div class="hero__search__form">
-                                <form  action="{{ url('/shop') }}" method="POST">
+                                <form  action="{{ route('detail_shop', $store->id) }}" method="POST">
                                     @csrf
                                     <div class="hero__search__categories">
                                         Pencarian
@@ -44,10 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 mt-3">
+                    <div class="col-lg-3 mt-2">
                         <div class="filter__sort float-right">
                             <span>Sort By Sales</span>
-                            <form action="/shop" method="POST" class="d-inline">
+                            <form action="{{ route('detail_shop', $store->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 <select name="sort" id="sort">
                                     @if ($sort == 'DESC')
@@ -104,7 +107,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="row">
+                        <div class="row mt-5">
                             <div class="col-lg-12">
                                 <div class="pull-left">
                                     {{ $produk->links() }}

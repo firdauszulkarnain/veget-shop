@@ -61,6 +61,10 @@ a.text-style:focus {
     border-top: 0.25rem solid #0b3005 !important;
 }
 
+.border-left-primary {
+    border-left: 0.3rem solid #0b3005 !important;
+}
+
 #main {
     width: 100%;
     padding-left: 30px;

@@ -9,6 +9,7 @@ use App\Models\Pesanan;
 use App\Models\Kabupaten;
 use App\Models\Detpesanan;
 use App\Models\Pengiriman;
+use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,20 +17,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
-    public function index(Request $request)
+    public function index(Store $store, Request $request)
     {
         $sort = 'DESC';
         $keyword = null;
         if ($request->isMethod('POST')) {
             $sort = ($request->sort) ? $request->sort : 'DESC';
             if ($request->keyword) {
-                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('nama_produk', 'LIKE', '%' . $request->keyword . '%')->where('stock_produk', 1)->orderBy('total', $sort)->paginate(8);
+                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('nama_produk', 'LIKE', '%' . $request->keyword . '%')->where('stock_produk', 1)->where('store_id', $store->id)->orderBy('total', $sort)->paginate(8);
                 $keyword = $request->keyword;
             } else {
-                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('stock_produk', 1)->orderBy('total', $sort)->paginate(8);
+                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('stock_produk', 1)->where('store_id', $store->id)->orderBy('total', $sort)->paginate(6);
             }
         } else {
-            $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('stock_produk', 1)->orderBy('total', $sort)->paginate(8);
+            $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('stock_produk', 1)->where('store_id', $store->id)->orderBy('total', $sort)->paginate(6);
         }
 
 
@@ -38,10 +39,30 @@ class ShopController extends Controller
             'produk' => $produk,
             'sort' => $sort,
             'keyword' => $keyword,
+            'store' => $store,
             'totalCart' => $this->totalCart(),
         ];
 
         return view('main.shop', $data);
+    }
+
+    public function shop_list(Request $request)
+    {
+        $keyword = null;
+        if ($request->isMethod('POST')) {
+            $store = Store::where('nama_toko', 'LIKE', '%' . $request->keyword . '%')->paginate(6);
+            $keyword = $request->keyword;
+        } else {
+            $store = Store::paginate(6);
+        }
+        $data = [
+            'title' => 'List Toko',
+            'keyword' => $keyword,
+            'toko' => $store,
+            'totalCart' => $this->totalCart(),
+        ];
+
+        return view('main.shop_list', $data);
     }
 
     public function keranjang()
