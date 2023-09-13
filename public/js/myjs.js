@@ -189,4 +189,40 @@ $(document).ready(function() {
     }
     const datelocal =moment().format('Do MMMM YYYY');
     $('.date_trans').html(datelocal);
+
+    $('#mytabel tbody').on('click', '.tombol-approve', function (e) {
+        e.preventDefault();
+        const form = $(this).parents('form');
+        Swal.fire({
+        title: 'Warning!',
+        text: "Terima Pendaftaran Seller?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#218838',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Terima'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+        })
+    });
+
+    $('#mytabel tbody').on('click', '.tombol-reject', function (e) {
+        e.preventDefault();
+        const form = $(this).parents('form');
+        Swal.fire({
+        title: 'Warning!',
+        text: "Tolak Pendaftaran Seller?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#218838',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Tolak'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+        })
+    });
 });

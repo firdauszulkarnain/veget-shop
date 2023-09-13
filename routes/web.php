@@ -84,6 +84,8 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin', 'cache']],
     Route::get('/produk', [AdminController::class, 'produk'])->name('admin.produk');
     Route::get('/user/customer', [AdminController::class, 'customer'])->name('admin.user');
     Route::get('/user/seller', [AdminController::class, 'seller'])->name('admin.seller');
+    Route::put('/user/seller/approve/{store:id}', [HomeController::class, 'approve_seller'])->name('approve_seller');
+    Route::put('/user/seller/reject/{store:id}', [HomeController::class, 'reject_seller'])->name('reject_seller');
     Route::get('/user/admin', [AdminController::class, 'admin'])->name('admin.admin');
     Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan');
     Route::get('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])->name('admin.konfirmasi');

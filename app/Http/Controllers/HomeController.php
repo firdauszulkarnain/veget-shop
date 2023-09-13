@@ -53,10 +53,13 @@ class HomeController extends Controller
 
             return redirect()->route('profile')->with('success', 'Berhasil Update Profile');
         } else {
+            $store = Store::where('user_id', auth()->user()->id)->first();
+            $store = ($store) ? $store : null;
             $data = [
                 'title' => 'Profil Saya',
                 'user' => User::where('id', auth()->user()->id)->first(),
-                'totalCart' => $this->totalCart()
+                'totalCart' => $this->totalCart(),
+                'store' => $store,
             ];
 
             return view('user.profile', $data);
@@ -73,17 +76,15 @@ class HomeController extends Controller
                 'notelp_toko' => 'required',
             ]);
 
-            Store::create([
+            Store::updateOrCreate(['user_id' => $user->id], [
                 'user_id' => $user->id,
                 'nama_toko' => $post['nama_toko'],
-                'notelp_toko' => $post['notelp_toko'],
                 'alamat_toko' => $post['alamat_toko'],
+                'notelp_toko' => $post['notelp_toko'],
+                'is_active' => 0,
             ]);
 
-            $user->role = 2;
-            $user->save();
-
-            return redirect()->route('profile');
+            return redirect()->route('profile')->with('success', 'Berhasil Daftar Seller');
         }
 
         $data = [
@@ -92,6 +93,28 @@ class HomeController extends Controller
         ];
 
         return view('auth.regis_seller', $data);
+    }
+
+    public function approve_seller(Store $store)
+    {
+        $store = Store::where('id', $store->id)->first();
+        $store->is_active = 1;
+        $store->save();
+
+        $user = User::where('id', $store->user_id)->first();
+        $user->role = 2;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Berhasil Konfirmasi Akun Seller');
+    }
+
+    public function reject_seller(Store $store)
+    {
+        $store = Store::where('id', $store->id)->first();
+        $store->is_active = 2;
+        $store->save();
+
+        return redirect()->back()->with('success', 'Berhasil Tolak Registrasi Seller');
     }
 
 

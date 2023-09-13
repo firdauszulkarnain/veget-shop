@@ -47,7 +47,7 @@ class AdminController extends Controller
     {
         $data = [
             'title' => 'Data Seller',
-            'seller' => Store::with(['user'])->orderbyDesc('created_at')->get(),
+            'seller' => Store::with(['user'])->where('is_active', '<', 2)->orderbyDesc('created_at')->get(),
         ];
 
         return view('user.seller', $data);

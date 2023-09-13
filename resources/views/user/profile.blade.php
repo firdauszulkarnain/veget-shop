@@ -47,8 +47,20 @@
                                     <a href="{{ route('update_password') }}"  class="btn btn-danger btn-sm px-4 mt-3 mb-3">Ganti Password</a>
                                    @if (auth()->user()->role == 2)
                                         <a href="/seller" class="btn btn-light btn-sm px-4 mt-3 mb-3 float-right">Dashboard Seller</a>
-                                    @else
+                                    @elseif(auth()->user()->role == 3 && ($store == null || $store->is_active == 2))
                                         <a href="{{ route('register_seller') }}" class="btn btn-light btn-sm px-4 mt-3 mb-3 float-right">Daftar Seller</a>
+                                    @endif
+                                    @if (auth()->user()->role == 3 && ($store != null && $store->is_active == 0))
+                                        <br>
+                                        <div class="row d-flex justify-content-center">
+                                            <small class="badge badge-light text-center text-secondary font-weight-bolder px-4 py-1 rounded-pill">Pendaftaran Seller Menunggu Konfirmasi Administrator</small>
+                                        </div>
+                                    @endif
+                                    @if (auth()->user()->role == 3 && ($store != null && $store->is_active == 2))
+                                        <br>
+                                        <div class="row d-flex justify-content-center">
+                                            <small class="text-danger text-center font-weight-bolder badge badge-light px-5 py-1 rounded-pill">Pendaftaran Seller Anda Ditolak!</small>
+                                        </div>
                                     @endif
                                  </div>
                                 </div>

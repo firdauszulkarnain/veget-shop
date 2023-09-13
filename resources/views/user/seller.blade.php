@@ -29,13 +29,27 @@
                                 <td>{{ $row->notelp_toko }}</td>                                          
                                 <td>{{ $row->user->email }}</td> 
                                 <td>
-                                    <form action="{{ route('delete_user', $row->user->id) }}" method="POST" class="d-inline" >
-                                        @method('delete')
+                                    @if ($row->is_active == 0)
+                                    <form action="{{ route('approve_seller', $row->id) }}" method="POST" class="d-inline">
+                                        @method('PUT')
                                         @csrf
-                                        <button class="btn btn-danger btn-sm tombol-hapus" type="submit">
-                                            <i class="far fa-fw fa-trash-alt"></i>
-                                        </button>
+                                        <button class="btn btn-style btn-sm tombol-approve"><i class="fas fa-fw fa-check"></i></button>
                                     </form>
+                                    <form action="{{ route('reject_seller', $row->id) }}" method="POST" class="d-inline">
+                                        @method('PUT')
+                                        @csrf
+                                        <button class="btn btn-danger btn-sm tombol-reject"><i class="fas fa-fw fa-times"></i></i></button>
+                                    </form>
+                                    @endif
+                                    @if ($row->is_active == 1)
+                                        <form action="{{ route('delete_user', $row->user->id) }}" method="POST" class="d-inline" >
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm tombol-hapus" type="submit">
+                                                <i class="far fa-fw fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>                                         
                             </tr>
                         @endforeach
