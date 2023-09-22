@@ -13,7 +13,7 @@
     <li class="nav-item {{ Request::is('seller*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('seller.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Beranda</span></a>
     </li>
 
     <hr class="sidebar-divider">
@@ -67,7 +67,7 @@
      <li class="nav-item {{ Request::is('admin') || Request::is('admin/dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Beranda</span></a>
     </li>
 
 

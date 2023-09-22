@@ -27,18 +27,18 @@
                 aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ (auth()->user()->role == 2) ? route('seller.profile') : route('admin.profile') }}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    Profil
                 </a>
                 @if (auth()->user()->role == 2)
                 <a class="dropdown-item" href="{{ route('home') }}">
                     <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Home
+                    Halaman Depan
                 </a>
                 @endif
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
+                    Keluar
                 </a>
             </div>
         </li>

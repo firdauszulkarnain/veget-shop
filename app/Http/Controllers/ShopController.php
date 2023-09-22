@@ -9,6 +9,7 @@ use App\Models\Pesanan;
 use App\Models\Kabupaten;
 use App\Models\Detpesanan;
 use App\Models\Pengiriman;
+use App\Models\Review;
 use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -24,13 +25,13 @@ class ShopController extends Controller
         if ($request->isMethod('POST')) {
             $sort = ($request->sort) ? $request->sort : 'DESC';
             if ($request->keyword) {
-                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('nama_produk', 'LIKE', '%' . $request->keyword . '%')->where('stock_produk', 1)->where('store_id', $store->id)->orderBy('total', $sort)->paginate(8);
+                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('nama_produk', 'LIKE', '%' . $request->keyword . '%')->where('store_id', $store->id)->orderBy('total', $sort)->paginate(8);
                 $keyword = $request->keyword;
             } else {
-                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('stock_produk', 1)->where('store_id', $store->id)->orderBy('total', $sort)->paginate(6);
+                $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('store_id', $store->id)->orderBy('total', $sort)->paginate(6);
             }
         } else {
-            $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('stock_produk', 1)->where('store_id', $store->id)->orderBy('total', $sort)->paginate(6);
+            $produk = Produk::with(['store'])->select("*", DB::raw('(SELECT SUM(ds.qty) FROM detpesanans ds join pesanans ps on ps.id = ds.pesanan_id WHERE ds.produk_id = produks.id and ps.status > 0) as total'))->where('store_id', $store->id)->orderBy('total', $sort)->paginate(6);
         }
 
 
@@ -303,8 +304,15 @@ class ShopController extends Controller
         return view('main.konfirmasi_pembayaran', $data);
     }
 
-    public function pesanan_selesai(Pesanan $pesanan)
+    public function pesanan_selesai(Pesanan $pesanan, Request $request)
     {
+        Review::create([
+            'user_id' => $pesanan->user_id,
+            'store_id' => $pesanan->store_id,
+            'rating' => $request->rating,
+            'ulasan' => $request->ulasan,
+        ]);
+
         Invoice::create([
             'pesanan_id' => $pesanan->id,
             'user_id' => $pesanan->user_id,

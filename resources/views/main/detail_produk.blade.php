@@ -57,6 +57,9 @@
                                 </div>
                                 <a href="{{ route('verification.notice') }}" class="primary-btn">ADD TO CARD</a>
                             @else
+                                @if ($produk->stock_produk == 0)
+                                <a href="#" id="stock_habis" class="primary-btn">ADD TO CARD</a>
+                                @else
                                 <form action="{{ route('tambah_keranjang', $produk->id) }}" method="POST">
                                     @csrf
                                     <div class="product__details__quantity">
@@ -68,10 +71,18 @@
                                     </div>
                                     <button type="submit" id="keranjang" class="primary-btn border-0"><i class="fa fa-shopping-cart"></i></button>
                                 </form>
+                                @endif
+                               
                             @endif     
                         @endif
                         <ul>
-                            <li><b>Stock</b> <span>Tersedia</span></li>
+                            <li><b>Stock</b> 
+                                @if ($produk->stock_produk == 0)
+                                    <span>Tidak Tersedia</span>
+                                @else
+                                    <span>Tersedia</span>
+                                @endif
+                            </li>
                             <li><b>Store</b> <span class="text-capitalize">{{ $produk->store->nama_toko }}</span></li>
                             <li><b>Total Terjual</b> <span class="text-capitalize">
                                 @if ($sold->total > 10)

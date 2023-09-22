@@ -93,6 +93,15 @@
             toastr.info(message);
     </script>
     @endif
+
+    <script>
+         $(document).ready(function() {
+            $("#stock_habis").click(function() {
+                toastr.error('Stock Tidak Tersedia');
+                // You can add your code to execute when the button is clicked here
+            });
+        });
+    </script>
 </body>
 
 </html>

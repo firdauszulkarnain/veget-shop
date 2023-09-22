@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="customSwitches" name="stock" checked>
-                        <label class="custom-control-label text-primary font-weight-bolder" for="customSwitches" id="labelStock">Stock Available</label>
+                        <label class="custom-control-label text-primary font-weight-bolder" for="customSwitches" id="labelStock">Stock Tersedia</label>
                     </div>
                 </div>
             </div>
@@ -79,11 +79,11 @@
         $('#customSwitches').click(function() {
         if($(this).is(':checked')){
             $("#labelStock").attr('class', 'custom-control-label text-primary font-weight-bolder');
-            $('#labelStock').html('Stock Available');  
+            $('#labelStock').html('Stock Tersedia');  
         } 
         else{
             $("#labelStock").attr('class', 'custom-control-label text-danger font-weight-bolder');
-            $('#labelStock').html('Stock Not Available');
+            $('#labelStock').html('Stock Tidak Tersedia');
         }
         });
 

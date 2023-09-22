@@ -16,7 +16,7 @@
                     @if (auth()->check())
                         <a href="{{ route('profile') }}" class="text-decoration-none text-dark"><i class="fa fa-user"></i> {{ auth()->user()->username }}</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-decoration-none text-dark"><i class="fa fa-user"></i> Login</a>
+                        <a href="{{ route('login') }}" class="text-decoration-none text-dark"><i class="fa fa-user"></i> MASUK</a>
                     @endif
                 </li>
             </ul>
@@ -40,7 +40,7 @@
                 <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">Tentang</a></li>
                 <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Hubungi Kami</a></li>
                 @if (auth()->check())
-                <li ><a href="{{ route('logout') }}">Logout</a></li>
+                <li ><a href="{{ route('logout') }}">Keluar</a></li>
                 @endif
             </ul>
         </nav>
@@ -83,22 +83,22 @@
                                             <a class="dropdown-item text-dark" id="user-dropdown" href="{{ route('profile') }}">Profil Saya</a>
                                             @endif
                                             @if (auth()->user()->role == 2)
-                                            <a class="dropdown-item text-dark" id="user-dropdown" href="{{ route('seller.dashboard') }}">Dashboard</a>
+                                            <a class="dropdown-item text-dark" id="user-dropdown" href="{{ route('seller.dashboard') }}">Beranda</a>
                                             @endif
                                             @if (auth()->user()->role == 1)
-                                            <a class="dropdown-item text-dark" id="user-dropdown" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                            <a class="dropdown-item text-dark" id="user-dropdown" href="{{ route('admin.dashboard') }}">Beranda</a>
                                             @endif
                                             @if (auth()->user()->role != 1)
                                             <a class="dropdown-item text-dark" id="user-dropdown" href="/pesanan-saya">Pesanan Saya</a>
                                             @endif
                                             <form action="/logout" method="POST">
                                                 @csrf
-                                                <button class="dropdown-item" id="user-dropdown" style="font-size: 14px !important;">Logout</button>
+                                                <button class="dropdown-item" id="user-dropdown" style="font-size: 14px !important;">Keluar</button>
                                             </form>
                                         </div>
                                     </div>
                                 @else
-                                    <a href="/login" class="ml-3"><i class="fa fa-user"></i> Login</a>
+                                    <a href="/login" class="ml-3"><i class="fa fa-user"></i> Masuk</a>
                                 @endif
                             </div>
                         </div>

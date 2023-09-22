@@ -49,16 +49,16 @@
                     </div>
                     <div class="col-lg-3 mt-2">
                         <div class="filter__sort float-right">
-                            <span>Sort By Sales</span>
+                            <span>Filter Penjualan</span>
                             <form action="{{ route('detail_shop', $store->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 <select name="sort" id="sort">
                                     @if ($sort == 'DESC')
-                                        <option value="DESC" selected>High To Low</option>
-                                        <option value="ASC">Low To High</option>
+                                        <option value="DESC" selected>Tinggi - Rendah</option>
+                                        <option value="ASC">Rendah - Tinggi</option>
                                     @else
-                                        <option value="DESC">High To Low</option>
-                                        <option value="ASC" selected>Low To High</option>
+                                        <option value="DESC">Tinggi - Rendah</option>
+                                        <option value="ASC" selected>Rendah - Tinggi</option>
                                     @endif
                                 </select>
                             </form>
@@ -85,11 +85,15 @@
                                                     @if (auth()->user()->email_verified_at == null)
                                                     <li><a href="{{ route('verification.notice') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                                     @else
-                                                    <li>
-                                                        <a href="javascript:;" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalKeranjang" class="modal_keranjang">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>  
+                                                        @if ($item->stock_produk == 0)
+                                                            <li><a href="#" id="stock_habis"><i class="fa fa-shopping-cart"></i></a></li>
+                                                        @else
+                                                            <li>
+                                                                <a href="javascript:;" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalKeranjang" class="modal_keranjang">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                </a>
+                                                            </li>  
+                                                        @endif
                                                     @endif
                                                 @endif
                                             </ul>
@@ -97,10 +101,14 @@
                                         <div class="featured__item__text">
                                             <h6 class="text-capitalize"><a href="/shop/detail-produk/{{ $item->id }}">{{ $item->nama_produk }}</a></h6>
                                             <h5>Rp.{{ number_format($item->harga_produk, 0, ',', '.') }}</h5>
-                                                @if ($item->total > 10)
-                                                    <small class="badge st-color"> {{ $item->total }} Pcs Sold</small>
-                                                @elseif($item->total > 0 && $item->total < 10)
-                                                    <small class="badge st-color"> 0{{ $item->total }} Pcs Sold</small>
+                                                @if ($item->stock_produk == 0)
+                                                    <small class="badge badge-danger"> Stok Habis</small>
+                                                @else
+                                                    @if ($item->total > 10)
+                                                        <small class="badge st-color"> {{ $item->total }} Pcs Terjual</small>
+                                                    @elseif($item->total > 0 && $item->total < 10)
+                                                        <small class="badge st-color"> 0{{ $item->total }} Pcs Terjual</small>
+                                                    @endif
                                                 @endif
                                         </div>
                                     </div>

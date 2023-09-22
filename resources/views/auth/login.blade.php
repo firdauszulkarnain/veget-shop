@@ -25,7 +25,7 @@
                     <div class="pt-5 pb-3 px-4">
                         <div class=" card-body p-0">
                             <div class="text-center">
-                                <h2 style="font-size: 40px; color: #0B3005"><i class="fa-solid fa-user"></i> LOGIN</h2>
+                                <h2 style="font-size: 40px; color: #0B3005"><i class="fa-solid fa-user"></i> MASUK</h2>
                                 <hr class="garis mb-4">
                             </div>
                             <form method="POST" action="{{ route('login') }}" class="mt-0">
@@ -63,7 +63,7 @@
                                     @enderror
                                 </div>
                                 <small class="mb-4 float-right"><a href="{{ route('password.request') }}" class="text-decoration-none text-dark font-weight-bolder">Lupa Password?</a></small>
-                                <button class="btn st-color btn-block font-weight-bolder" type="submit">LOGIN</button>
+                                <button class="btn st-color btn-block font-weight-bolder" type="submit">MASUK</button>
                                 <hr>
                                 <div class="text-center mt-4">
                                     <p class="small">Belum Punya Akun? Silahkan
